@@ -22,23 +22,33 @@ class Cart:
 
     def add_item(self, item: dict, qty: int = 1) -> None:
         # TODO
-        raise NotImplementedError
+        #Checks if there is already a matching item in the list, and if so, increments its quantity
+        for line in self.lines: 
+                if line["id"] == item["id"]:
+                    line["qty"] += qty
+                    return
+
+        #If there is no matching quantity, then it appends the item to the list
+        line = item.copy()
+        line["qty"] = qty
+        self.lines.append(line) 
 
     def remove_item(self, item_id: int) -> None:
         # TODO
-        raise NotImplementedError
+        self.lines = [line for line in self.lines if line["id"] != item_id]    #Loops through the list and adds all lines back, other than the matching line
 
     def clear(self) -> None:
         # TODO
-        raise NotImplementedError
+        self.lines.clear()
 
     def total(self) -> float:
         # TODO - round ONCE, at the end
-        raise NotImplementedError
+        return round(sum(line["price"]*line["qty"] for line in self.lines),2)
 
     def __repr__(self) -> str:
         # TODO
-        raise NotImplementedError
+        num_lines = len(self.lines)
+        return f"<Cart {num_lines} {"item" if num_lines == 1 else "items"}, ${self.total():.2f}>"
 
 
 if __name__ == "__main__":
