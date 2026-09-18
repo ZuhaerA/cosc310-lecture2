@@ -16,7 +16,7 @@ Requirements:
 import json
 from pathlib import Path
 
-MENU_PATH = Path("starter/data/menu.json")
+MENU_PATH = Path(__file__).parent / "data" / "menu.json"
 
 
 def load_menu() -> list[dict]:
