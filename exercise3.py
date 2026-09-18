@@ -25,11 +25,27 @@ class Cart:
         # TODO: validate FIRST, then mutate.
         #   if qty < 1:                 raise ValueError(...)
         #   if not item["available"]:   raise OutOfStockError(...)
-        raise NotImplementedError
+        if qty < 1:
+            raise ValueError("The quantity entered is less than 1")
+        elif not item["available"]:
+            raise OutOfStockError("The item is out of stock")
+        else:
+            for line in self.lines: 
+                if line["id"] == item["id"]:
+                    line["qty"] += qty
+                    return
+            
+            #If there is no matching quantity, then it appends the item to the list
+            line = item.copy()
+            line["qty"] = qty
+            self.lines.append(line) 
 
     def remove_item(self, item_id: int) -> None:
         # TODO: raise KeyError if the item is not in the cart
-        raise NotImplementedError
+        if not any(line["id"] == item_id for line in self.lines):
+            raise KeyError("This item is not in the cart")
+        else:
+            self.lines = [line for line in self.lines if line["id"] != item_id]
 
     def total(self) -> float:
         return round(sum(line["price"] * line["qty"] for line in self.lines), 2)
