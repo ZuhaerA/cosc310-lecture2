@@ -35,8 +35,9 @@ class Cart:
 
     def remove_item(self, item_id: int) -> None:
         # TODO
-        self.lines = [line for line in self.lines if line["id"] != item_id]    #Loops through the list and adds all lines back, other than the matching line
-
+        #Loops through the list and adds all lines back, other than the matching line
+        self.lines = [line for line in self.lines if line["id"] != item_id]    
+        
     def clear(self) -> None:
         # TODO
         self.lines.clear()
