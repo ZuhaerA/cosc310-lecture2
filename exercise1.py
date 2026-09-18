@@ -16,7 +16,7 @@ Requirements:
 import json
 from pathlib import Path
 
-MENU_PATH = Path(__file__).parent / "data" / "menu.json"
+MENU_PATH = Path("starter/data/menu.json")
 
 
 def load_menu() -> list[dict]:
@@ -28,7 +28,7 @@ def load_menu() -> list[dict]:
 def available_under(menu: list[dict], limit: float) -> list[dict]:
     """Return available items priced below `limit`, sorted cheapest first."""
     # TODO: filter items priced under $10, then sort by price.
-    raise NotImplementedError
+    return sorted([i for i in menu if i["price"] < limit], key=lambda i: i["price"]) #Filters the menu for items below $10, then sorts them by price
 
 
 def main() -> None:
@@ -36,7 +36,7 @@ def main() -> None:
     for item in available_under(menu, 10.00):
         # TODO: print name and price using an f-string.
         # Hint: f"{item['name']:<20} ${item['price']:.2f}"
-        pass
+        print(f"{item['name']:<20} ${item['price']:.2f}")   #Prints out the item and price in a format
 
 
 if __name__ == "__main__":
