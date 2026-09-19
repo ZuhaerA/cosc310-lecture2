@@ -65,3 +65,5 @@ if __name__ == "__main__":
     print(cart)                  # <Cart 2 items, $40.50>
     print(len(cart.lines))       # 2
     print(cart.total())          # 40.5
+
+#Comment added for Exercise 4
