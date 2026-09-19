@@ -68,4 +68,18 @@ if __name__ == "__main__":
     # except ValueError as e:
     #     print(f"Rejected: {e}")
 
+    try:
+        cart.add_item(gyoza, 0)
+    except ValueError as e:
+        print(f"Rejected: {e}")
+    try:
+        cart.add_item(miso, 1)
+    except OutOfStockError as e:
+        print(f"Rejected: {e}")
+
+    try:
+        cart.remove_item(2)
+    except KeyError as e:
+        print(f"Rejected: {e}")
+
 #Comment added for Exercise 4
